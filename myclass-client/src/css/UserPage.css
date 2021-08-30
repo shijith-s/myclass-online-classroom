@@ -1,0 +1,147 @@
+.userpage {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.classJoinCreateForm {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  display: none;
+}
+
+.showClassJoinCreateForm {
+  display: block;
+  z-index: 80;
+}
+
+.classForm {
+  background-color: #162b32;
+  color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: auto;
+  min-width: 300px;
+  max-width: 500px;
+  position: relative;
+}
+
+.classForm h2 {
+  margin-bottom: 20px;
+}
+
+.classForm form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.classForm form label {
+  width: auto;
+  text-align: left;
+  margin: 0 10px;
+}
+
+.classForm form input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+}
+
+.classForm form button {
+  margin: 20px;
+  background: #ff4838;
+  padding: 5px;
+  width: 130px;
+  text-align: center;
+  color: white;
+  font-family: "Merienda", cursive;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  -webkit-box-shadow: 0 5px 10px 1px rgba(59, 56, 56, 0.7);
+          box-shadow: 0 5px 10px 1px rgba(59, 56, 56, 0.7);
+  width: auto;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.classForm form button:active {
+  -webkit-box-shadow: 0 3px 5px 0.4px rgba(59, 56, 56, 0.9);
+          box-shadow: 0 3px 5px 0.4px rgba(59, 56, 56, 0.9);
+  background: #eb1300;
+}
+
+.classForm form button:hover {
+  background-color: #ff311f;
+}
+
+.classForm .classForm__close {
+  position: absolute;
+  color: white;
+  top: 8px;
+  right: 8px;
+  font-weight: 800 !important;
+  cursor: pointer;
+}
+
+.userpage__content {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.userpage__mainContent {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+  padding-bottom: 100px;
+  margin: 0;
+}
+
+.userpage__mainGrid {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.userpage__sidebar {
+  z-index: 1000;
+  width: 250px;
+  visibility: hidden;
+  overflow: hidden;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+
+.showsidebar {
+  visibility: visible;
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+/*# sourceMappingURL=UserPage.css.map */

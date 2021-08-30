@@ -9,54 +9,60 @@ import {
 } from "react-router-dom";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
-// import HomePage from "./HomePage";
-import { UserContext } from "./context/UserContext";
+import StudentPage from "./components/StudentPage";
+import TeacherPage from "./components/TeacherPage";
+import UserContextProvider from "./context/UserContext";
+import axios from "axios";
+
+const baseUrl = process.env.REACT_APP_BASEURL;
+// const studentDetailsUrl = "/student/getalldata";
 
 function App() {
-  const [state, dispatch] = useContext(UserContext);
+  const [userData, dispatch] = UserContextProvider();
 
   useEffect(() => {
     const token = sessionStorage.getItem("token");
-    const id = sessionStorage.getItem("id");
-    const name = sessionStorage.getItem("name");
-    dispatch({
-      type: "ADD_USER",
-      userID: id,
-      name: name,
-      token: token,
-    });
+    const category = sessionStorage.getItem("category");
+    if (token) {
+      console.log(token);
+      const getDataUrl = baseUrl + `/${category}/getalldata`;
+      axios
+        .get(getDataUrl, {
+          headers: {
+            authorization: "Bearer " + token,
+          },
+        })
+        .then((res) => {
+          console.log(res);
+          dispatch({
+            type: "ADD_USERDATA",
+            data: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, []);
+
   return (
     <div className="App">
       <Router>
         <Switch>
           <Route path="/signin">
-            {!sessionStorage.getItem("token") ? (
-              <SignIn />
-            ) : (
-              <Redirect to="/home" />
-            )}
+            <SignIn />
           </Route>
           <Route path="/signup">
-            {!sessionStorage.getItem("token") ? (
-              <SignUp />
-            ) : (
-              <Redirect to="/home" />
-            )}
+            <SignUp />
           </Route>
-          {/* <Route path="/home">
-            {sessionStorage.getItem("token") ? (
-              <HomePage />
-            ) : (
-              <Redirect to="/" />
-            )}
-          </Route> */}
+          <Route path="/studenthome">
+            <StudentPage />
+          </Route>
+          <Route path="/teacherhome">
+            <TeacherPage />
+          </Route>
           <Route path="/">
-            {!sessionStorage.getItem("token") ? (
-              <SignInPage />
-            ) : (
-              <Redirect to="/home" />
-            )}
+            <SignInPage />
           </Route>
         </Switch>
       </Router>

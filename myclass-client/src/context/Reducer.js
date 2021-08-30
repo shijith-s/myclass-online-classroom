@@ -1,16 +1,17 @@
 export const initialState = {
-  userID: null,
-  name: null,
-  token: null,
+  classes: [],
 };
 
 const reducer = (state, action) => {
+  console.log(action);
   switch (action.type) {
-    case "ADD_USER":
-      return { name: action.name, userID: action.userID, token: action.token };
+    case "ADD_USERDATA":
+      return { ...state, ...action.data };
 
     case "REMOVE_USER":
-      return { name: null, userId: null, token: null };
+      return {
+        classes: [],
+      };
 
     default:
       return state;

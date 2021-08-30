@@ -1,0 +1,18 @@
+@import "./variables";
+
+.sidebar {
+  background-color: $theme1;
+  color: white;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  padding-top: 50px;
+  div {
+    // margin: 0 30px;
+    padding: 20px;
+    cursor: pointer;
+    &:hover {
+      background-color: $theme2;
+    }
+  }
+}

@@ -6,10 +6,17 @@ require("dotenv/config");
 const logger = require("morgan");
 const studentRouter = require("./routes/student");
 const teacherRouter = require("./routes/teacher");
+const cors = require("cors");
 
 const static_file_folder = "./myclass-client/build";
 
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+  })
+);
 app.use(express.static(path.resolve(__dirname, static_file_folder)));
+app.use(express.static(path.join(__dirname, "uploads")));
 
 //midlleware
 app.use(express.json());
@@ -24,9 +31,9 @@ app.use(logger("dev"));
 app.use("/student", studentRouter);
 app.use("/teacher", teacherRouter);
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.resolve(__dirname, static_file_folder, "index.html"));
-});
+// app.get("/*", (req, res) => {
+//   res.sendFile(path.resolve(__dirname, static_file_folder, "index.html"));
+// });
 
 //connecting to database
 mongoose.connect(

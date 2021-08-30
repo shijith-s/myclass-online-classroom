@@ -4,6 +4,8 @@ import "../css/Sign.css";
 import axios from "axios";
 import UserContextProvider from "../context/UserContext";
 
+const baseUrl = process.env.REACT_APP_BASEURL;
+
 function SignUp() {
   const history = useHistory();
   const [state, dispatch] = UserContextProvider();
@@ -14,25 +16,30 @@ function SignUp() {
     event.preventDefault();
     const inputData = {
       name: event.target.name.value,
-      email: event.target.email.value,
+      username: event.target.username.value,
       password: event.target.password.value,
     };
 
-    const url = category === "student" ? "/student/signup" : "/teacher/signup";
+    const url =
+      baseUrl +
+      (category === "student" ? "/student/signup" : "/teacher/signup");
 
     console.log(inputData);
     axios
       .post(url, inputData)
-      .then((result) => {
-        console.log(result);
-        sessionStorage.setItem("token", result.data.jwtToken);
-        sessionStorage.setItem("name", result.data.name);
+      .then((res) => {
+        console.log(res);
+        sessionStorage.setItem("token", res.data.token);
+        sessionStorage.setItem("category", category);
+        delete res.data.token;
         dispatch({
-          type: "ADD_USER",
-          name: result.data.name,
-          token: result.data.jwtToken,
+          type: "ADD_USERDATA",
+          data: {
+            userInfo: res.data,
+            category: category,
+          },
         });
-        history.push("/home");
+        history.push(`/${category}home`);
       })
       .catch((err) => {
         console.log("some error occured");
@@ -42,6 +49,11 @@ function SignUp() {
   };
 
   const changeUserType = (e, type) => {
+    const changeBtns = document.querySelectorAll(".sign__typeBtn");
+    changeBtns.forEach((btn) => {
+      btn.classList.remove("sign__typeBtnActive");
+    });
+    e.currentTarget.classList.add("sign__typeBtnActive");
     setcategory(type);
   };
 
@@ -60,7 +72,7 @@ function SignUp() {
       <div className="sign__body">
         <div className="sign__header">
           <Link to="/" className="link">
-            <h2>hedwig</h2>
+            <h2>MyClass</h2>
           </Link>
         </div>
         <div className="sign__form">
@@ -69,7 +81,7 @@ function SignUp() {
               onClick={(e) => {
                 changeUserType(e, "student");
               }}
-              className="sign__typeBtn"
+              className="sign__typeBtn sign__typeBtnActive"
             >
               Student
             </button>
@@ -92,8 +104,8 @@ function SignUp() {
             <input
               type="text"
               minLength="6"
-              name="email"
-              placeholder=" email"
+              name="username"
+              placeholder="username"
             />
             <input
               type="password"

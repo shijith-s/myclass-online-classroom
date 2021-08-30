@@ -3,7 +3,7 @@ const joi = require("joi");
 const registerValidator = (data) => {
   const regSchema = joi.object({
     name: joi.string().required().min(6).max(30),
-    email: joi.string().email().min(6).required(),
+    username: joi.string().min(6).required(),
     password: joi.string().min(6).required(),
   });
   return regSchema.validate(data);
@@ -11,7 +11,7 @@ const registerValidator = (data) => {
 
 const loginValidator = (data) => {
   const regSchema = joi.object({
-    email: joi.string().email().min(6).required(),
+    username: joi.string().min(6).required(),
     password: joi.string().min(6).required(),
   });
   return regSchema.validate(data);

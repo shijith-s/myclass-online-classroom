@@ -4,6 +4,8 @@ import "../css/Sign.css";
 import axios from "axios";
 import UserContextProvider from "../context/UserContext";
 
+const baseUrl = process.env.REACT_APP_BASEURL;
+
 function SignIn() {
   const history = useHistory();
   const [state, dispatch] = UserContextProvider();
@@ -12,34 +14,42 @@ function SignIn() {
   const signInRequest = async (event) => {
     event.preventDefault();
     const inputData = {
-      email: event.target.email.value,
+      username: event.target.username.value,
       password: event.target.password.value,
     };
 
-    const url = category === "student" ? "/student/login" : "/teacher/login";
+    const url =
+      baseUrl + (category === "student" ? "/student/login" : "/teacher/login");
 
     console.log(inputData);
     console.log(url);
     axios
       .post(url, inputData)
-      .then((result) => {
-        sessionStorage.setItem("token", result.data.jwtToken);
-        sessionStorage.setItem("name", result.data.name);
-
+      .then((res) => {
+        sessionStorage.setItem("token", res.data.token);
+        sessionStorage.setItem("category", category);
+        const userData = res.data;
+        delete userData.token;
+        console.log(userData);
         dispatch({
-          type: "ADD_USER",
-          name: result.data.name,
-          token: result.data.jwtToken,
+          type: "ADD_USERDATA",
+          data: userData,
         });
-        history.push("/home");
+        console.log(sessionStorage.getItem("token"));
+        history.push(`/${category}home`);
       })
       .catch((err) => {
-        console.log(err.response.data.message);
-        alert(err.response.data.message);
+        console.log(err.response.message);
+        alert(err.response.message);
       });
   };
 
   const changeUserType = (e, type) => {
+    const changeBtns = document.querySelectorAll(".sign__typeBtn");
+    changeBtns.forEach((btn) => {
+      btn.classList.remove("sign__typeBtnActive");
+    });
+    e.currentTarget.classList.add("sign__typeBtnActive");
     setcategory(type);
   };
 
@@ -58,7 +68,7 @@ function SignIn() {
       <div className="sign__body">
         <div className="sign__header">
           <Link to="/" className="link">
-            <h2>hedwig</h2>
+            <h2>MyClass</h2>
           </Link>
         </div>
         <div className="sign__form">
@@ -67,7 +77,7 @@ function SignIn() {
               onClick={(e) => {
                 changeUserType(e, "student");
               }}
-              className="sign__typeBtn"
+              className="sign__typeBtn sign__typeBtnActive"
             >
               Student
             </button>
@@ -84,8 +94,8 @@ function SignIn() {
             <input
               type="text"
               minLength="6"
-              name="email"
-              placeholder=" email"
+              name="username"
+              placeholder="username"
             />
             <input
               type="password"

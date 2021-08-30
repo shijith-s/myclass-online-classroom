@@ -1,0 +1,18 @@
+.sidebar {
+  background-color: #162b32;
+  color: white;
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  padding-top: 50px;
+}
+
+.sidebar div {
+  padding: 20px;
+  cursor: pointer;
+}
+
+.sidebar div:hover {
+  background-color: #ff4838;
+}
+/*# sourceMappingURL=SideBar.css.map */

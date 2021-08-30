@@ -7,9 +7,9 @@ const StudentSchema = mongoose.Schema({
     max: 255,
     required: true,
   },
-  email: {
+  username: {
     type: String,
-    unique: [true, "Email is already present"],
+    unique: [true, "Username is already taken"],
   },
   password: {
     type: String,
@@ -21,6 +21,12 @@ const StudentSchema = mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  classes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Classes",
+    },
+  ],
 });
 
 const student = mongoose.model("Students", StudentSchema);

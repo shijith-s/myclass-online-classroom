@@ -1,0 +1,134 @@
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 50px;
+  width: 100%;
+  background-color: #162b32;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+}
+
+.header__fullLogo {
+  font-family: "Pacifico", cursive;
+  font-weight: 300;
+  font-size: 30px;
+  color: white;
+  cursor: default;
+  font-size: 16px;
+  font-weight: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header__fullLogo .header__hamburger {
+  margin: 5px 10px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.header__fullLogo .header__hamburger .header__hamburgerIcon {
+  margin: auto;
+  font-size: 30px;
+}
+
+.header__fullLogo .header__hamburger:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.header__profile {
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 10px;
+  outline: none;
+  overflow: hidden;
+  -o-object-fit: contain;
+     object-fit: contain;
+  padding: 0;
+  background-color: #857d7d;
+  cursor: pointer;
+}
+
+.header__profile img {
+  width: 100%;
+  height: 100%;
+}
+
+.header__right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0 20px;
+}
+
+.header__plus {
+  color: white;
+  height: 100%;
+  margin: 0 30px;
+  cursor: pointer;
+}
+
+.userpage__userInfo {
+  width: 350px;
+  background-color: white;
+  -webkit-box-shadow: -4px 5px 20px rgba(0, 0, 0, 0.4);
+          box-shadow: -4px 5px 20px rgba(0, 0, 0, 0.4);
+  display: block;
+  visibility: visible;
+  position: absolute;
+  right: 0;
+  top: 50px;
+  height: 450px;
+  border-radius: 0 0 10px 10px;
+  -webkit-transition: all 1.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.userpage__userInfo::-webkit-scrollbar {
+  /*Chrome, Safari and Opera */
+  display: none;
+}
+
+.hidden_userpage__userInfo {
+  height: 0;
+  visibility: hidden;
+}
+/*# sourceMappingURL=Header.css.map */

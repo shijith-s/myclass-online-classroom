@@ -1,0 +1,31 @@
+.assignmentsList {
+  width: 100%;
+  max-width: 600px;
+  margin: auto;
+  margin-top: 20px;
+  padding: 20px 0;
+}
+
+.assignment__body {
+  background-color: #ddd;
+  margin: 30px 0;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: left;
+  width: auto;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+          box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.assignment__body .assignment__bodyTitle {
+  margin-bottom: 5px;
+}
+
+.assignment__body .assignment__bodyClassname {
+  margin-bottom: 20px;
+}
+
+.assignment__body .assignment__bodyDeadline {
+  margin-top: 10px;
+}
+/*# sourceMappingURL=AssignmentsList.css.map */
