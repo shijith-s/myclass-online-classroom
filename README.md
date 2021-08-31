@@ -1,6 +1,6 @@
 # myclass-online-classroom
 
-Online class platform where teachers can create new classes and students can join those classes via class code.
+Online class platform where teachers can create new classes and students can join those classes via class code.Teachers can post assignments which can be performed by students and upload the submission file to the classroom.Teachers can review the assignment.
 
 ##How to build and run
 
